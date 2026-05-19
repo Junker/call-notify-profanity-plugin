@@ -15,7 +15,7 @@ all: $(BUILD_DIR)/$(PLUGIN_NAME).so
 
 $(BUILD_DIR)/$(PLUGIN_NAME).so: $(SRC)
 	mkdir -p $(BUILD_DIR)
-	$(CC) -shared -o $@ -fPIC $(CFLAGS) $(STROPHE_CFLAGS) $(GLIB_CFLAGS) -Wl,-rpath=$(LIBRARY_PATH) $< $(PROFANITY_LIBS) $(STROPHE_LIBS) $(GLIB_LIBS)
+	$(CC) -shared -o $@ -fPIC $(CFLAGS) $(STROPHE_CFLAGS) $(GLIB_CFLAGS) -Wno-unused-parameter -Wl,-rpath=$(LIBRARY_PATH) $< $(PROFANITY_LIBS) $(STROPHE_LIBS) $(GLIB_LIBS)
 
 install: all
 	mkdir -p $(INSTALL_DIR)
