@@ -78,14 +78,12 @@ void prof_init(const char *const version, const char *const status,
                const char *const account_name, const char *const fulljid)
 {
     g_xmpp_ctx = xmpp_ctx_new(NULL, NULL);
-    prof_log_info("call_notify plugin loaded - monitoring for XEP-0353 incoming calls");
 }
 
-void prof_close(void)
+void prof_on_unload(void)
 {
     if (g_xmpp_ctx != NULL) {
         xmpp_ctx_free(g_xmpp_ctx);
         g_xmpp_ctx = NULL;
     }
-    prof_log_info("call_notify plugin unloaded");
 }
