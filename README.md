@@ -39,8 +39,7 @@ Load the plugin in Profanity:
 
 When an incoming call proposal arrives, you'll see a desktop notification like:
 
-> **Incoming Call**
-
+> **Incoming Call**  
 > Ring ring: user@example.com is trying to call you
 
 And a message will appear in the chat window with the caller.
