@@ -34,7 +34,7 @@ This copies the plugin to `~/.local/share/profanity/plugins/`.
 Load the plugin in Profanity:
 
 ```
-/plugin load call_notify
+/plugins load call_notify
 ```
 
 When an incoming call proposal arrives, you'll see a desktop notification like:
