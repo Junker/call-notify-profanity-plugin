@@ -20,7 +20,7 @@
 #define NOTIFY_ICON_PREFIX              "Ring ring"
 
 // Plugin state
-static xmpp_ctx_t *g_xmpp_ctx = NULL;
+static xmpp_ctx_t *xmpp_ctx = NULL;
 
 static void notify_incoming_call(const char *caller_jid)
 {
@@ -49,11 +49,11 @@ static gboolean is_jingle_call_propose(xmpp_stanza_t *stanza)
 
 int prof_on_message_stanza_receive(const char *const stanza_str)
 {
-    if (stanza_str == NULL || g_xmpp_ctx == NULL) {
+    if (stanza_str == NULL || xmpp_ctx == NULL) {
         return 1;
     }
 
-    xmpp_stanza_t *message = xmpp_stanza_new_from_string(g_xmpp_ctx, stanza_str);
+    xmpp_stanza_t *message = xmpp_stanza_new_from_string(xmpp_ctx, stanza_str);
     if (message == NULL) {
         return 1;
     }
@@ -64,10 +64,10 @@ int prof_on_message_stanza_receive(const char *const stanza_str)
         return 1;
     }
 
-    char *bare_jid = xmpp_jid_bare(g_xmpp_ctx, from_jid);
+    char *bare_jid = xmpp_jid_bare(xmpp_ctx, from_jid);
     if (bare_jid != NULL) {
         notify_incoming_call(bare_jid);
-        xmpp_free(g_xmpp_ctx, bare_jid);
+        xmpp_free(xmpp_ctx, bare_jid);
     }
 
     xmpp_stanza_release(message);
@@ -77,13 +77,13 @@ int prof_on_message_stanza_receive(const char *const stanza_str)
 void prof_init(const char *const version, const char *const status,
                const char *const account_name, const char *const fulljid)
 {
-    g_xmpp_ctx = xmpp_ctx_new(NULL, NULL);
+    xmpp_ctx = xmpp_ctx_new(NULL, NULL);
 }
 
 void prof_on_unload(void)
 {
-    if (g_xmpp_ctx != NULL) {
-        xmpp_ctx_free(g_xmpp_ctx);
-        g_xmpp_ctx = NULL;
+    if (xmpp_ctx != NULL) {
+        xmpp_ctx_free(xmpp_ctx);
+        xmpp_ctx = NULL;
     }
 }
