@@ -74,8 +74,10 @@ int prof_on_message_stanza_receive(const char *const stanza_str)
     return 1;
 }
 
-void prof_init(const char *const version, const char *const status,
-               const char *const account_name, const char *const fulljid)
+void prof_init(G_GNUC_UNUSED const char *const version,
+               G_GNUC_UNUSED const char *const status,
+               G_GNUC_UNUSED const char *const account_name,
+               G_GNUC_UNUSED const char *const fulljid)
 {
     xmpp_ctx = xmpp_ctx_new(NULL, NULL);
 }
