@@ -84,8 +84,5 @@ void prof_init(G_GNUC_UNUSED const char *const version,
 
 void prof_on_unload(void)
 {
-    if (xmpp_ctx != NULL) {
-        xmpp_ctx_free(xmpp_ctx);
-        xmpp_ctx = NULL;
-    }
+    g_clear_pointer(&xmpp_ctx, xmpp_ctx_free);
 }
